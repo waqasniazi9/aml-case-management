@@ -130,7 +130,7 @@ Edit `.env` file to customize:
 ```env
 FLASK_ENV=production          # production or development
 API_PORT=5000                 # Change port if needed
-GITHUB_REPO_OWNER=AML-AMLC   # GitHub owner
+GITHUB_REPO_OWNER=aml-system   # GitHub owner
 GITHUB_REPO_NAME=aml-case-data  # GitHub repo
 ```
 
@@ -214,7 +214,7 @@ curl -X POST http://localhost:5000/api/cases \
 1. **Check logs:** `aml_system.log`
 2. **Run tests:** `python test_api.py`
 3. **Read docs:** `README.md`
-4. **Contact:** AML AMLC Lahore
+4. **Contact:** AML System Lahore
 
 ---
 
@@ -232,5 +232,6 @@ curl -X POST http://localhost:5000/api/cases \
 ---
 
 *AML AML Case Management System v3.0*  
-*Developed by: Waqas Khan Niazi, AML AMLC Lahore*
+*Developed by: Waqas Khan Niazi, AML System Lahore*
+
 

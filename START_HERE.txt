@@ -289,7 +289,7 @@ Database (SQLite)
 📞 DEVELOPER INFO
 
 Developed by:     Waqas Khan Niazi
-Organization:     AML AMLC Lahore
+Organization:     AML System Lahore
 Version:          3.0
 Release Date:     January 31, 2026
 Status:           ✅ PRODUCTION READY
@@ -317,9 +317,10 @@ Then open: aml3_system.html
 Thank you for using AML AML Case Management System v3.0!
 
 For questions or issues, refer to the documentation files or 
-contact AML AMLC Lahore.
+contact AML System Lahore.
 
 Happy investigating! 🕵️
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 

@@ -585,5 +585,6 @@ System learns from case outcomes and adjusts detection thresholds over time.
 
 ---
 
-*For AML AMLC Lahore - Anti-Money Laundering Case Management System*
+*For AML System Lahore - Anti-Money Laundering Case Management System*
+
 

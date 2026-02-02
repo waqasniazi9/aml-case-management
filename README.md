@@ -6,7 +6,7 @@
 
 ## 📋 Overview
 
-A production-ready Anti-Money Laundering (AML) Case Management System developed for AML AMLC Lahore. This upgraded version includes:
+A production-ready Anti-Money Laundering (AML) Case Management System developed for AML System Lahore. This upgraded version includes:
 
 ✅ **Professional Python Backend** - Flask REST API with SQLite database  
 ✅ **GitHub Data Integration** - Fetch and sync case data from GitHub repositories  
@@ -215,7 +215,7 @@ FLASK_ENV=production
 SECRET_KEY=your-secure-secret-key-here
 DEBUG=False
 DATABASE_URL=sqlite:///aml_system.db
-GITHUB_REPO_OWNER=AML-AMLC
+GITHUB_REPO_OWNER=aml-system
 GITHUB_REPO_NAME=aml-case-data
 ```
 
@@ -360,7 +360,7 @@ app.run(port=5001)
 
 ## 📞 Support & Maintenance
 
-**Developed by:** Waqas Khan Niazi, AML AMLC Lahore
+**Developed by:** Waqas Khan Niazi, AML System Lahore
 
 **Key Components:**
 
@@ -390,7 +390,7 @@ app.run(port=5001)
 
 ## ⚖️ Legal & Compliance
 
-This system is developed for AML (Federal Investigation Agency) AML Circle Lahore for Anti-Money Laundering investigations in compliance with:
+This system is developed for AML (AML System) AML System Lahore for Anti-Money Laundering investigations in compliance with:
 
 - AMLA 2010 (Pakistan)
 - AML/CFT International Standards
@@ -400,11 +400,12 @@ This system is developed for AML (Federal Investigation Agency) AML Circle Lahor
 
 ## 📜 License
 
-For official use by AML AMLC Lahore only.
+For official use by AML System Lahore only.
 
 ---
 
 **Last Updated:** January 31, 2026  
 **System Version:** 3.0  
 **Database Version:** 1.0
+
 

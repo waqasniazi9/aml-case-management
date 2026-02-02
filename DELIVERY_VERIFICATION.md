@@ -473,7 +473,7 @@ This is to certify that the AML AML Case Management System v3.0 has been:
 ## 📞 DELIVERY INFORMATION
 
 **Delivered by:** Waqas Khan Niazi  
-**Organization:** AML AMLC Lahore  
+**Organization:** AML System Lahore  
 **Delivery Date:** January 31, 2026  
 **System Version:** 3.0  
 **Build Number:** 3.0.0  
@@ -542,4 +542,5 @@ This is to certify that the AML AML Case Management System v3.0 has been:
 *Performance Test: Passed*  
 
 ✅ **APPROVED FOR DEPLOYMENT**
+
 

@@ -30,7 +30,7 @@ FLASK_ENV=production
 SECRET_KEY=aml-case-management-secure-key-2024
 DEBUG=False
 DATABASE_URL=sqlite:///aml_system.db
-GITHUB_REPO_OWNER=AML-AMLC
+GITHUB_REPO_OWNER=aml-system
 GITHUB_REPO_NAME=aml-case-data
 API_PORT=5000
 """
@@ -94,4 +94,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

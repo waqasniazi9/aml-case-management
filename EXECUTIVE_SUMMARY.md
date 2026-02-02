@@ -5,7 +5,7 @@
 ## AML AML Case Management System v3.0 Upgrade
 
 **Project:** AML Case Management System Modernization  
-**Organization:** AML AMLC Lahore  
+**Organization:** AML System Lahore  
 **Version:** 3.0 (Released: January 31, 2026)  
 **Status:** ✅ COMPLETE & PRODUCTION READY  
 
@@ -512,7 +512,7 @@ Database (SQLite)
 ## 📞 CONTACTS & ESCALATION
 
 **Development Lead:** Waqas Khan Niazi  
-**Organization:** AML AMLC Lahore  
+**Organization:** AML System Lahore  
 **Status:** Ready for handoff  
 **Support Level:** Active development  
 
@@ -538,5 +538,6 @@ The system is:
 **Document Prepared:** January 31, 2026  
 **System Version:** 3.0  
 **Status:** ✅ APPROVED FOR PRODUCTION  
-**Prepared by:** AML AMLC Lahore Development Team  
+**Prepared by:** AML System Lahore Development Team  
+
 

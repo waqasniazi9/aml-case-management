@@ -10,7 +10,7 @@
 
 ## 🎯 System Overview
 
-A comprehensive **Anti-Money Laundering (AML) Case Management System** developed for the AML (Federal Investigation Agency) Lahore with advanced cryptocurrency compliance monitoring through Solana Token ACL integration.
+A comprehensive **Anti-Money Laundering (AML) Case Management System** developed for the AML (AML System) Lahore with advanced cryptocurrency compliance monitoring through Solana Token ACL integration.
 
 ### Key Features
 
@@ -551,7 +551,7 @@ pip install --upgrade -r requirements.txt
 
 ## 📄 License & Legal
 
-**Developed For:** Federal Investigation Agency (AML) Lahore  
+**Developed For:** AML System Lahore  
 **Jurisdiction:** Pakistan  
 **Compliance:** AML/CFT Standards, Pakistani Financial Regulations
 
@@ -581,4 +581,5 @@ To contribute improvements:
 ---
 
 **For detailed technical information, see [SOLANA_ACL_INTEGRATION.md](SOLANA_ACL_INTEGRATION.md)**
+
 

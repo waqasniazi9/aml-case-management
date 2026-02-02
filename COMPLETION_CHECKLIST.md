@@ -561,7 +561,7 @@
 **Maintenance:** Ongoing  
 
 **Developed by:** Waqas Khan Niazi  
-**Organization:** AML AMLC Lahore  
+**Organization:** AML System Lahore  
 
 ---
 
@@ -579,4 +579,5 @@
 ---
 
 **PROJECT STATUS: ✅ COMPLETE & READY FOR DEPLOYMENT**
+
 

@@ -556,8 +556,8 @@ python aml_system.py
 ## 📞 CONTACT & SUPPORT
 
 **Developed by:** Waqas Khan Niazi  
-**Organization:** AML AMLC Lahore  
-**Email:** [Contact AML AMLC]  
+**Organization:** AML System Lahore  
+**Email:** [Contact AML System]  
 **Version:** 3.0  
 **Last Updated:** January 31, 2026  
 
@@ -605,4 +605,5 @@ python aml_system.py
 **Quality:** Enterprise-Grade  
 **Support:** Active  
 **Maintenance:** Ongoing  
+
 

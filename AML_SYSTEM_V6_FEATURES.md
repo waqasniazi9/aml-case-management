@@ -568,5 +568,6 @@ For detailed algorithm documentation, see:
 **Version:** 6.0 Enhanced  
 **Last Updated:** February 2026  
 **Status:** Production Ready  
-**License:** AML AMLC Lahore
+**License:** AML System Lahore
+
 

@@ -321,5 +321,6 @@ The system is production-ready with:
 
 *Rebuild completed on January 31, 2026*  
 *System Version: 3.5*  
-*Developer: Waqas Khan Niazi, AML AMLC*
+*Developer: Waqas Khan Niazi, AML System*
+
 
