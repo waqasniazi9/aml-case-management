@@ -1,0 +1,71 @@
+# 📋 Copy-Paste Commands for PythonAnywhere Bash Console
+
+## When you open Bash Console, paste each command one at a time
+
+---
+
+## Command 1: Navigate to Home Directory
+
+```bash
+cd /home/waqasniazi9
+```
+
+Press **Enter**
+
+---
+
+## Command 2: Install Python Packages
+
+```bash
+/home/waqasniazi9/.virtualenvs/*/bin/pip install flask flask-cors werkzeug PyPDF2 python-docx openpyxl nltk textblob numpy requests
+```
+
+Press **Enter** and wait for installation (2-3 minutes)
+
+You should see: **"Successfully installed"** at the end
+
+---
+
+## Command 3: Verify Installation
+
+```bash
+/home/waqasniazi9/.virtualenvs/*/bin/python -c "import aml_system; print('✅ AML System imports successfully')"
+```
+
+Press **Enter**
+
+Should show: **"✅ AML System imports successfully"**
+
+---
+
+## Command 4: List Files to Verify Upload
+
+```bash
+ls -lh
+```
+
+Press **Enter**
+
+You should see:
+- aml_system.py
+- dashboard_enhanced.html
+- aml_multi_user.db
+- requirements.txt
+- config.py
+- wsgi.py
+
+---
+
+## If Any Command Fails
+
+Copy the error message and send it to me!
+
+---
+
+## After All Commands Complete:
+
+1. Go to: https://www.pythonanywhere.com/user/waqasniazi9/webapps/
+2. Click **Reload** button
+3. Wait 10 seconds
+4. Visit: https://waqasniazi9.pythonanywhere.com
+5. You should see login page ✅

@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AML System v6.0 Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4CAF50;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .cases-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .case-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .case-card.critical {
+            border-left-color: #f44336;
+        }
+
+        .case-card.high {
+            border-left-color: #ff9800;
+        }
+
+        .case-card.medium {
+            border-left-color: #ffc107;
+        }
+
+        .case-card.low {
+            border-left-color: #4CAF50;
+        }
+
+        .case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .case-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .case-number {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .risk-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .risk-badge.critical {
+            background: #f44336;
+        }
+
+        .risk-badge.high {
+            background: #ff9800;
+        }
+
+        .risk-badge.medium {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .risk-badge.low {
+            background: #4CAF50;
+        }
+
+        .case-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .detail-item {
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        .description {
+            color: #666;
+            font-size: 14px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 18px;
+        }
+
+        .error {
+            background: #f44336;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        .refresh-btn {
+            background: #4CAF50;
+        }
+
+        .refresh-btn:hover {
+            background: #45a049;
+        }
+
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .form-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 20px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .submit-btn {
+            background: #667eea;
+            flex: 1;
+        }
+
+        .submit-btn:hover {
+            background: #764ba2;
+        }
+
+        .clear-btn {
+            background: #999;
+            flex: 0.5;
+        }
+
+        .clear-btn:hover {
+            background: #777;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .message.success {
+            background: #4CAF50;
+            color: white;
+            display: block;
+        }
+
+        .message.error {
+            background: #f44336;
+            color: white;
+            display: block;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            color: #666;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ AML System v6.0 Enhanced</h1>
+            <div class="status">
+                <div class="status-item">
+                    <div class="status-dot"></div>
+                    <span>System: <strong>Online</strong></span>
+                </div>
+                <div class="status-item">
+                    <div class="status-dot"></div>
+                    <span>Database: <strong>Connected</strong></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-label">Total Cases</div>
+                <div class="stat-number" id="totalCases">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Critical Cases</div>
+                <div class="stat-number" id="criticalCases">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Amount</div>
+                <div class="stat-number" id="totalAmount">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Open Cases</div>
+                <div class="stat-number" id="openCases">--</div>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <button class="refresh-btn" onclick="loadCases()">🔄 Refresh Data</button>
+            <button onclick="toggleForms()" style="background: #ff9800;">➕ Add New Data</button>
+        </div>
+
+        <!-- Forms Section -->
+        <div id="formsSection" style="display: none; margin-bottom: 30px;">
+            <div class="tabs">
+                <button class="tab-button active" onclick="switchTab('createCase')">Create Case</button>
+                <button class="tab-button" onclick="switchTab('addTransaction')">Add Transaction</button>
+                <button class="tab-button" onclick="switchTab('addThreat')">Add Threat</button>
+            </div>
+
+            <!-- Create Case Form -->
+            <div id="createCase" class="tab-content active form-container">
+                <h2>Create New Case</h2>
+                <div id="createCaseMessage" class="message"></div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Case Name *</label>
+                        <input type="text" id="caseName" placeholder="e.g., Suspicious Transaction Ring">
+                    </div>
+                    <div class="form-group">
+                        <label>Case Type *</label>
+                        <select id="caseType">
+                            <option value="">Select Type</option>
+                            <option value="hawala">Hawala</option>
+                            <option value="structuring">Structuring</option>
+                            <option value="money_laundering">Money Laundering</option>
+                            <option value="ongoing_monitoring">Ongoing Monitoring</option>
+                            <option value="cash_intensive">Cash Intensive</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Priority *</label>
+                        <select id="casePriority">
+                            <option value="">Select Priority</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Currency</label>
+                        <select id="caseCurrency">
+                            <option value="PKR">PKR (Pakistani Rupee)</option>
+                            <option value="USD">USD (US Dollar)</option>
+                            <option value="EUR">EUR (Euro)</option>
+                            <option value="GBP">GBP (British Pound)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="caseDescription" placeholder="Enter case details..."></textarea>
+                </div>
+                <div class="form-buttons">
+                    <button class="submit-btn" onclick="createCase()">Create Case</button>
+                    <button class="clear-btn" onclick="clearCaseForm()">Clear</button>
+                </div>
+            </div>
+
+            <!-- Add Transaction Form -->
+            <div id="addTransaction" class="tab-content form-container">
+                <h2>Add Transaction to Case</h2>
+                <div id="addTransactionMessage" class="message"></div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Select Case *</label>
+                        <select id="transactionCaseId">
+                            <option value="">Loading cases...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount *</label>
+                        <input type="number" id="transactionAmount" placeholder="100000">
+                    </div>
+                    <div class="form-group">
+                        <label>Currency</label>
+                        <select id="transactionCurrency">
+                            <option value="PKR">PKR</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Source Entity *</label>
+                        <input type="text" id="sourceEntity" placeholder="e.g., Entity001">
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Destination Entity *</label>
+                        <input type="text" id="destinationEntity" placeholder="e.g., Entity002">
+                    </div>
+                    <div class="form-group">
+                        <label>Transaction Date</label>
+                        <input type="date" id="transactionDate">
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <button class="submit-btn" onclick="addTransaction()">Add Transaction</button>
+                    <button class="clear-btn" onclick="clearTransactionForm()">Clear</button>
+                </div>
+            </div>
+
+            <!-- Add Threat Form -->
+            <div id="addThreat" class="tab-content form-container">
+                <h2>Ingest Threat Data</h2>
+                <div id="addThreatMessage" class="message"></div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Threat ID *</label>
+                        <input type="text" id="threatId" placeholder="THREAT001">
+                    </div>
+                    <div class="form-group">
+                        <label>Threat Type *</label>
+                        <select id="threatType">
+                            <option value="">Select Type</option>
+                            <option value="sanctions">Sanctions List</option>
+                            <option value="pep">PEP (Politically Exposed Person)</option>
+                            <option value="criminal">Criminal History</option>
+                            <option value="fraud">Fraud Alert</option>
+                            <option value="terrorist">Terrorist Financing</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Risk Level *</label>
+                        <select id="threatRiskLevel">
+                            <option value="">Select Level</option>
+                            <option value="critical">Critical</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Entity Name *</label>
+                        <input type="text" id="threatEntity" placeholder="e.g., Muhammad Khan">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Details</label>
+                    <textarea id="threatDetails" placeholder="Enter threat details..."></textarea>
+                </div>
+                <div class="form-buttons">
+                    <button class="submit-btn" onclick="addThreat()">Add Threat</button>
+                    <button class="clear-btn" onclick="clearThreatForm()">Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="content" class="loading">Loading cases...</div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000';
+
+        async function loadCases() {
+            try {
+                document.getElementById('content').innerHTML = '<div class="loading">Loading cases...</div>';
+
+                const response = await fetch(`${API_BASE}/api/cases`);
+                const data = await response.json();
+
+                if (data.error) {
+                    document.getElementById('content').innerHTML = `<div class="error">Error: ${data.error}</div>`;
+                    return;
+                }
+
+                const cases = data.cases || [];
+
+                // Update statistics
+                let totalAmount = 0;
+                let criticalCount = 0;
+                let openCount = 0;
+
+                cases.forEach(c => {
+                    totalAmount += c.amount_involved || 0;
+                    if (c.risk_level === 'critical') criticalCount++;
+                    if (c.status === 'open') openCount++;
+                });
+
+                document.getElementById('totalCases').textContent = cases.length;
+                document.getElementById('criticalCases').textContent = criticalCount;
+                document.getElementById('totalAmount').textContent = 'PKR ' + totalAmount.toLocaleString();
+                document.getElementById('openCases').textContent = openCount;
+
+                // Render cases
+                let html = '<div class="cases-container">';
+
+                if (cases.length === 0) {
+                    html += '<div class="error">No cases found</div>';
+                } else {
+                    cases.forEach(c => {
+                        const riskClass = c.risk_level || 'medium';
+                        html += `
+                            <div class="case-card ${riskClass}">
+                                <div class="case-header">
+                                    <div>
+                                        <div class="case-title">${c.title || 'Untitled'}</div>
+                                        <div class="case-number">${c.case_number}</div>
+                                    </div>
+                                    <span class="risk-badge ${riskClass}">${(c.risk_level || 'medium').toUpperCase()}</span>
+                                </div>
+                                <div class="case-details">
+                                    <div class="detail-item">
+                                        <div class="detail-label">Case Type</div>
+                                        <div class="detail-value">${c.case_type}</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">Status</div>
+                                        <div class="detail-value">${c.status.toUpperCase()}</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">Amount</div>
+                                        <div class="detail-value">${c.currency} ${(c.amount_involved || 0).toLocaleString()}</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">Created</div>
+                                        <div class="detail-value">${c.created_at}</div>
+                                    </div>
+                                </div>
+                                ${c.description ? `<div class="description"><strong>Notes:</strong> ${c.description}</div>` : ''}
+                            </div>
+                        `;
+                    });
+                }
+
+                html += '</div>';
+                document.getElementById('content').innerHTML = html;
+
+            } catch (error) {
+                document.getElementById('content').innerHTML = `<div class="error">Error connecting to server: ${error.message}<br>Make sure the AML system is running on port 5000</div>`;
+            }
+        }
+
+        // Tab switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Toggle forms visibility
+        function toggleForms() {
+            const section = document.getElementById('formsSection');
+            section.style.display = section.style.display === 'none' ? 'block' : 'none';
+            loadCasesForDropdown();
+        }
+
+        // Load cases for dropdown in transaction form
+        async function loadCasesForDropdown() {
+            try {
+                const response = await fetch(`${API_BASE}/api/cases`);
+                const data = await response.json();
+                const cases = data.cases || [];
+                const select = document.getElementById('transactionCaseId');
+
+                select.innerHTML = '<option value="">Select a case...</option>';
+                cases.forEach(c => {
+                    const option = document.createElement('option');
+                    option.value = c.case_id;
+                    option.textContent = `${c.case_number} - ${c.title || 'Untitled'}`;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error loading cases:', error);
+            }
+        }
+
+        // Create Case
+        async function createCase() {
+            const name = document.getElementById('caseName').value;
+            const type = document.getElementById('caseType').value;
+            const priority = document.getElementById('casePriority').value;
+            const currency = document.getElementById('caseCurrency').value;
+            const description = document.getElementById('caseDescription').value;
+
+            if (!name || !type || !priority) {
+                showMessage('createCaseMessage', 'Please fill all required fields', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/api/cases`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        case_name: name,
+                        case_type: type,
+                        priority: priority,
+                        currency: currency,
+                        description: description
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('createCaseMessage', `✓ Case created successfully! Case ID: ${data.case_id}`, 'success');
+                    clearCaseForm();
+                    setTimeout(() => {
+                        loadCases();
+                        loadCasesForDropdown();
+                    }, 1000);
+                } else {
+                    showMessage('createCaseMessage', `Error: ${data.message || 'Failed to create case'}`, 'error');
+                }
+            } catch (error) {
+                showMessage('createCaseMessage', `Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Add Transaction
+        async function addTransaction() {
+            const caseId = document.getElementById('transactionCaseId').value;
+            const amount = document.getElementById('transactionAmount').value;
+            const currency = document.getElementById('transactionCurrency').value;
+            const source = document.getElementById('sourceEntity').value;
+            const destination = document.getElementById('destinationEntity').value;
+
+            if (!caseId || !amount || !source || !destination) {
+                showMessage('addTransactionMessage', 'Please fill all required fields', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/api/cases/${caseId}/transactions`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: parseFloat(amount),
+                        currency: currency,
+                        source_entity: source,
+                        destination_entity: destination
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('addTransactionMessage', '✓ Transaction added successfully!', 'success');
+                    clearTransactionForm();
+                    setTimeout(() => loadCases(), 1000);
+                } else {
+                    showMessage('addTransactionMessage', `Error: ${data.error || 'Failed to add transaction'}`, 'error');
+                }
+            } catch (error) {
+                showMessage('addTransactionMessage', `Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Add Threat
+        async function addThreat() {
+            const threatId = document.getElementById('threatId').value;
+            const threatType = document.getElementById('threatType').value;
+            const riskLevel = document.getElementById('threatRiskLevel').value;
+            const entity = document.getElementById('threatEntity').value;
+            const details = document.getElementById('threatDetails').value;
+
+            if (!threatId || !threatType || !riskLevel || !entity) {
+                showMessage('addThreatMessage', 'Please fill all required fields', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/api/threats/ingest`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        threat_id: threatId,
+                        threat_type: threatType,
+                        risk_level: riskLevel,
+                        entity_name: entity,
+                        details: details
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('addThreatMessage', '✓ Threat ingested successfully!', 'success');
+                    clearThreatForm();
+                    setTimeout(() => loadCases(), 1000);
+                } else {
+                    showMessage('addThreatMessage', `Error: ${data.error || 'Failed to ingest threat'}`, 'error');
+                }
+            } catch (error) {
+                showMessage('addThreatMessage', `Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Show message
+        function showMessage(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = `message ${type}`;
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
+
+        // Clear forms
+        function clearCaseForm() {
+            document.getElementById('caseName').value = '';
+            document.getElementById('caseType').value = '';
+            document.getElementById('casePriority').value = '';
+            document.getElementById('caseDescription').value = '';
+        }
+
+        function clearTransactionForm() {
+            document.getElementById('transactionCaseId').value = '';
+            document.getElementById('transactionAmount').value = '';
+            document.getElementById('sourceEntity').value = '';
+            document.getElementById('destinationEntity').value = '';
+        }
+
+        function clearThreatForm() {
+            document.getElementById('threatId').value = '';
+            document.getElementById('threatType').value = '';
+            document.getElementById('threatRiskLevel').value = '';
+            document.getElementById('threatEntity').value = '';
+            document.getElementById('threatDetails').value = '';
+        }
+
+        // Load cases on page load
+        loadCases();
+    </script>
+</body>
+
+</html>

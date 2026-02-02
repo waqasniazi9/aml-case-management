@@ -1,0 +1,151 @@
+📊 ENHANCED DASHBOARD - USER GUIDE
+================================================================
+
+Your dashboard now has **3 ways to add data**:
+
+1️⃣ CREATE CASE
+   - Add new investigation cases
+   - Input: Case name, Type, Priority, Currency, Description
+   - Data goes to: POST /api/cases
+
+2️⃣ ADD TRANSACTION
+   - Add transactions to existing cases
+   - Input: Select case, Amount, Entities, Currency
+   - Data goes to: POST /api/cases/{case_id}/transactions
+
+3️⃣ ADD THREAT
+   - Ingest threat intelligence data
+   - Input: Threat ID, Type, Risk Level, Entity, Details
+   - Data goes to: POST /api/threats/ingest
+
+================================================================
+
+HOW TO USE:
+
+1. Open dashboard.html in browser
+2. Click "➕ Add New Data" button
+3. Select tab: Create Case / Add Transaction / Add Threat
+4. Fill in the form fields (marked with * are required)
+5. Click "Create Case" / "Add Transaction" / "Add Threat"
+6. See success message ✓ when complete
+7. Dashboard auto-refreshes with new data
+
+================================================================
+
+EXAMPLE WORKFLOW:
+
+Step 1: CREATE A NEW CASE
+   - Case Name: "Gold Smuggling Ring"
+   - Case Type: "Money Laundering"
+   - Priority: "High"
+   - Currency: "PKR"
+   - Description: "Suspicious gold export pattern detected"
+   → Click "Create Case"
+   → Dashboard refreshes and shows new case
+
+Step 2: ADD TRANSACTION TO CASE
+   - Select Case: "CASE-xxx - Gold Smuggling Ring"
+   - Amount: 50000
+   - Currency: "PKR"
+   - Source Entity: "Peshawar_Trader_001"
+   - Destination Entity: "Dubai_Jeweler_002"
+   → Click "Add Transaction"
+   → Transaction added, case updated
+
+Step 3: ADD THREAT INTELLIGENCE
+   - Threat ID: "THREAT_2026_001"
+   - Threat Type: "Sanctions"
+   - Risk Level: "Critical"
+   - Entity Name: "Peshawar Trader"
+   - Details: "Listed in international sanctions database"
+   → Click "Add Threat"
+   → Threat ingested into system
+
+================================================================
+
+FORM FIELDS EXPLAINED:
+
+CREATE CASE:
+  Case Name *: What to call this investigation
+  Case Type *: hawala, structuring, money_laundering, etc.
+  Priority *: high, medium, low
+  Currency: PKR, USD, EUR, GBP (default: PKR)
+  Description: Additional notes about the case
+
+ADD TRANSACTION:
+  Select Case *: Which case this transaction belongs to
+  Amount *: Money involved (numbers only)
+  Currency: PKR, USD, EUR (default: PKR)
+  Source Entity *: Where money comes from (e.g., bank/person ID)
+  Destination Entity *: Where money goes to (e.g., bank/person ID)
+  Transaction Date: When it happened
+
+ADD THREAT:
+  Threat ID *: Unique identifier (e.g., THREAT_001)
+  Threat Type *: sanctions, pep, criminal, fraud, terrorist_financing
+  Risk Level *: critical, high, medium, low
+  Entity Name *: Person or organization name
+  Details: Additional threat information
+
+================================================================
+
+DATA FLOW:
+
+Form Input (Browser)
+         ↓
+    Dashboard JavaScript
+         ↓
+    API Request (HTTP POST)
+         ↓
+    Flask Server (Port 5000)
+         ↓
+    Database Storage (SQLite)
+         ↓
+    Dashboard Refreshes
+         ↓
+    New Data Visible
+
+================================================================
+
+TROUBLESHOOTING:
+
+Q: Forms not showing?
+A: Click "➕ Add New Data" button at top
+
+Q: "Error connecting to server"?
+A: Make sure python aml_system_v6_enhanced.py is running
+   Check that port 5000 is not blocked
+
+Q: Form submission failed?
+A: Check that all * (required) fields are filled
+   Try using different data
+   Check browser console (F12) for errors
+
+Q: New data not appearing?
+A: Click "🔄 Refresh Data" button
+   Wait a moment for database to update
+   Clear browser cache if needed
+
+================================================================
+
+STATISTICS AUTO-UPDATE:
+
+The top stats update automatically:
+✓ Total Cases - Count of all cases
+✓ Critical Cases - Cases with critical risk level
+✓ Total Amount - Sum of all transaction amounts
+✓ Open Cases - Cases with open status
+
+When you add new data, these numbers update automatically!
+
+================================================================
+
+Next Steps:
+
+1. Test by adding a few sample cases
+2. Add transactions to those cases
+3. Add threat intelligence
+4. Watch the detection algorithms work
+5. Review case analysis in API endpoints
+
+Enjoy your enhanced AML system! 🚀

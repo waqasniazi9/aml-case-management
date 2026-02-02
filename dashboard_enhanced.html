@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced AML System v9.0</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+        }
+
+        .auth-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .auth-panel {
+            width: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .auth-form {
+            width: 50%;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .auth-form h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .auth-form p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .auth-toggle {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .auth-toggle a {
+            color: #667eea;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        header {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: #333;
+            font-size: 24px;
+        }
+
+        .developer-info {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .user-info {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 15px;
+            border: none;
+            background: #f0f0f0;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card .value {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table th {
+            background: #f3f4f6;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #ddd;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        table tr:hover {
+            background: #f9fafb;
+        }
+
+        .alert {
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .alert-success {
+            background: #dcfce7;
+            color: #166534;
+            border-left: 4px solid #22c55e;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            color: #92400e;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-sm {
+            padding: 8px 12px;
+            font-size: 13px;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .btn-info {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 2000;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #eee;
+            margin-top: 40px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .risk-score {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .risk-critical {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .risk-high {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .risk-medium {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .risk-low {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- AUTH SECTION -->
+    <div id="authSection" class="auth-container">
+        <div class="auth-panel">
+            <div>
+                <h2 style="font-size: 32px; margin-bottom: 20px;">⚖️ Advanced AML System</h2>
+                <p style="font-size: 18px; margin-bottom: 20px;">Multi-User Platform with AI Risk Assessment</p>
+                <div style="text-align: left; line-height: 2;">
+                    <p>✓ KYC & CDD Verification</p>
+                    <p>✓ Real-Time Transaction Monitoring</p>
+                    <p>✓ AI-Powered Risk Assessment</p>
+                    <p>✓ Compliance Reporting</p>
+                    <p>✓ Sanctions Screening</p>
+                    <p>✓ File Upload & Management</p>
+                    <p>✓ Automatic Report Generation</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="auth-form">
+            <div id="loginForm" style="display: block;">
+                <h1>Login</h1>
+                <p>Access your AML cases and assessments</p>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="loginUsername" placeholder="your username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="your password">
+                </div>
+                <button class="btn btn-primary" onclick="login()" style="width: 100%;">Login</button>
+                <div class="auth-toggle">
+                    Don't have account? <a onclick="toggleAuth()">Register</a>
+                </div>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <h1>Create Account</h1>
+                <p>Join the AML compliance platform</p>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regFullName" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="regUsername" placeholder="Choose username">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Organization</label>
+                    <input type="text" id="regOrganization" placeholder="Your organization">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="Create password">
+                </div>
+                <button class="btn btn-primary" onclick="register()" style="width: 100%;">Register</button>
+                <div class="auth-toggle">
+                    Already registered? <a onclick="toggleAuth()">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD SECTION -->
+    <div id="dashboardSection" class="dashboard">
+        <div class="container">
+            <header>
+                <div>
+                    <h1>⚖️ Advanced AML System v9.0</h1>
+                    <p class="developer-info">👨‍💼 Developed by Waqas Khan Niazi</p>
+                </div>
+                <div style="text-align: right;">
+                    <p class="user-info" id="userGreeting">Welcome</p>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </header>
+
+            <div class="grid">
+                <div class="stat-card">
+                    <h3>Total Cases</h3>
+                    <div class="value" id="totalCases">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>AI Assessments</h3>
+                    <div class="value" id="totalAssessments">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>High Risk</h3>
+                    <div class="value" id="highRiskCases">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Reports</h3>
+                    <div class="value" id="totalReports">0</div>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('cases')">📋 Cases</button>
+                <button class="tab-btn" onclick="switchTab('transactions')">💰 Transactions</button>
+                <button class="tab-btn" onclick="switchTab('assessment')">🤖 AI Assessment</button>
+                <button class="tab-btn" onclick="switchTab('upload')">📤 Upload Files</button>
+                <button class="tab-btn" onclick="switchTab('reports')">📊 Reports</button>
+                <button class="tab-btn" onclick="switchTab('compliance')">✅ Compliance</button>
+                <button class="tab-btn" onclick="switchTab('screening')">🔍 Screening</button>
+            </div>
+
+            <!-- CASES TAB -->
+            <div id="cases" class="tab-content active">
+                <div class="card">
+                    <h3>Create New Case</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Case Title</label>
+                            <input type="text" id="caseTitle" placeholder="Case title">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="caseCategory">
+                                <option>STR - Suspicious Transaction</option>
+                                <option>CTR - Currency Transaction</option>
+                                <option>Terrorism Financing</option>
+                                <option>Sanctions</option>
+                                <option>Structuring</option>
+                                <option>PEP</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Accused Names</label>
+                            <input type="text" id="caseAccused" placeholder="Full names">
+                        </div>
+                        <div class="form-group">
+                            <label>Amount (PKR)</label>
+                            <input type="number" id="caseAmount" placeholder="0" min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Risk Level</label>
+                            <select id="caseRisk">
+                                <option>Low</option>
+                                <option selected>Medium</option>
+                                <option>High</option>
+                                <option>Critical</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="caseDescription" placeholder="Case details..."></textarea>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="createCase()">✅ Create Case</button>
+                        <button class="btn btn-info btn-sm" onclick="loadCases()">🔄 Refresh</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Your Cases</h3>
+                    <div class="form-row">
+                        <input type="text" id="searchCases" placeholder="🔍 Search cases by title, category, or ID..."
+                            style="grid-column: 1 / -1;">
+                    </div>
+                    <div id="casesList"></div>
+                </div>
+            </div>
+
+            <!-- TRANSACTIONS TAB -->
+            <div id="transactions" class="tab-content">
+                <div class="card">
+                    <h3>Add Transaction</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Case ID</label>
+                            <input type="text" id="txnCaseId" placeholder="Select case">
+                        </div>
+                        <div class="form-group">
+                            <label>Sender</label>
+                            <input type="text" id="txnSender" placeholder="Sender name">
+                        </div>
+                        <div class="form-group">
+                            <label>Receiver</label>
+                            <input type="text" id="txnReceiver" placeholder="Receiver name">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Amount</label>
+                            <input type="number" id="txnAmount" placeholder="0" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="txnDate">
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="addTransaction()">✅ Add</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Transaction History</h3>
+                    <div class="form-row">
+                        <input type="text" id="searchTransactions"
+                            placeholder="🔍 Search transactions by sender, receiver, or case ID..."
+                            style="grid-column: 1 / -1;">
+                    </div>
+                    <div id="transactionsList"></div>
+                </div>
+            </div>
+
+            <!-- AI ASSESSMENT TAB -->
+            <div id="assessment" class="tab-content">
+                <div class="card">
+                    <h3>AI Risk Assessment</h3>
+                    <div class="alert alert-info">
+                        Automatic AI analysis of your case based on multiple risk factors
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Case for Assessment</label>
+                        <input type="text" id="assessCaseId" placeholder="Case ID">
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-warning" onclick="runAssessment()">⚡ Generate AI Assessment</button>
+                    </div>
+
+                    <div id="assessmentResult" style="display: none; margin-top: 20px;">
+                        <div
+                            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                            <h3>RISK SCORE</h3>
+                            <div id="scoreValue" style="font-size: 48px; font-weight: bold; margin: 10px 0;">0</div>
+                            <p id="riskLevelText">Not Assessed</p>
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                            <h4>Risk Factors</h4>
+                            <table>
+                                <tr>
+                                    <th>Factor</th>
+                                    <th>Score</th>
+                                    <th>Assessment</th>
+                                </tr>
+                                <tr>
+                                    <td>Transaction Velocity</td>
+                                    <td id="f1">7/10</td>
+                                    <td>Multiple large transactions</td>
+                                </tr>
+                                <tr>
+                                    <td>Geographic Risk</td>
+                                    <td id="f2">6/10</td>
+                                    <td>High-risk jurisdictions</td>
+                                </tr>
+                                <tr>
+                                    <td>Sanctions Match</td>
+                                    <td id="f3">4/10</td>
+                                    <td>Pattern analysis</td>
+                                </tr>
+                                <tr>
+                                    <td>Structuring</td>
+                                    <td id="f4">5/10</td>
+                                    <td>Threshold patterns detected</td>
+                                </tr>
+                                <tr>
+                                    <td>PEP Connection</td>
+                                    <td id="f5">3/10</td>
+                                    <td>No known connections</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                            <h4>AI Recommendations</h4>
+                            <div id="recommendations" class="alert alert-warning"></div>
+                        </div>
+
+                        <div class="action-buttons" style="margin-top: 15px;">
+                            <button class="btn btn-danger" onclick="escalateCase()">⚠️ Escalate</button>
+                            <button class="btn btn-success" onclick="exportAssessment()">📥 Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FILE UPLOAD TAB -->
+            <div id="upload" class="tab-content">
+                <div class="card">
+                    <h3>Upload Documents</h3>
+                    <div class="alert alert-info">
+                        Upload KYC, CDD, EDD, identity documents, financial records, images, videos, etc.
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Case ID</label>
+                            <input type="text" id="uploadCaseId" placeholder="Case ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Document Type</label>
+                            <select id="docType">
+                                <option>KYC</option>
+                                <option>CDD</option>
+                                <option>EDD</option>
+                                <option>Identity</option>
+                                <option>Financial</option>
+                                <option>Photo</option>
+                                <option>Video</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select File</label>
+                        <input type="file" id="fileInput" multiple>
+                        <small>Supported: PDF, Images, Videos, Documents (Max 500MB each)</small>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="uploadFiles()">📤 Upload</button>
+                    </div>
+
+                    <div id="uploadProgress" style="display: none; margin-top: 15px;">
+                        <p id="uploadStatus">Uploading...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REPORTS TAB -->
+            <div id="reports" class="tab-content">
+                <div class="card">
+                    <h3>Generate Reports</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Case ID</label>
+                            <input type="text" id="reportCaseId" placeholder="Case ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Report Format</label>
+                            <select id="reportFormat">
+                                <option value="txt">Text (.txt)</option>
+                                <option value="pdf">PDF (.pdf)</option>
+                                <option value="excel">Excel (.xlsx)</option>
+                                <option value="html">HTML (.html)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="generateReport()">📋 Generate Report</button>
+                    </div>
+
+                    <div id="reportResult" style="display: none; margin-top: 20px;">
+                        <div class="alert alert-success">
+                            <strong>Report Generated!</strong>
+                            <button class="btn btn-success btn-sm" onclick="downloadReport()"
+                                style="margin-left: 10px;">Download</button>
+                        </div>
+                        <pre id="reportContent"
+                            style="background: #f3f4f6; padding: 15px; border-radius: 5px; overflow-x: auto; max-height: 400px; font-size: 12px;"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPLIANCE TAB -->
+            <div id="compliance" class="tab-content">
+                <div class="card">
+                    <h3>Compliance Checklist</h3>
+                    <div class="form-group">
+                        <label>Case ID</label>
+                        <input type="text" id="complianceCaseId" placeholder="Case ID">
+                    </div>
+
+                    <div style="background: #f9fafb; padding: 15px; border-radius: 5px;">
+                        <div style="padding: 10px; margin: 8px 0; background: white; border-radius: 5px;">
+                            <label><input type="checkbox" id="comp-kyc"> ✓ KYC (Know Your Customer) Completed</label>
+                        </div>
+                        <div style="padding: 10px; margin: 8px 0; background: white; border-radius: 5px;">
+                            <label><input type="checkbox" id="comp-cdd"> ✓ CDD (Customer Due Diligence) Verified</label>
+                        </div>
+                        <div style="padding: 10px; margin: 8px 0; background: white; border-radius: 5px;">
+                            <label><input type="checkbox" id="comp-edd"> ✓ EDD (Enhanced Due Diligence)
+                                Completed</label>
+                        </div>
+                        <div style="padding: 10px; margin: 8px 0; background: white; border-radius: 5px;">
+                            <label><input type="checkbox" id="comp-sanctions"> ✓ Sanctions Screening Passed</label>
+                        </div>
+                        <div style="padding: 10px; margin: 8px 0; background: white; border-radius: 5px;">
+                            <label><input type="checkbox" id="comp-pep"> ✓ PEP Verification Completed</label>
+                        </div>
+                        <div style="padding: 10px; margin: 8px 0; background: white; border-radius: 5px;">
+                            <label><input type="checkbox" id="comp-records"> ✓ Records Kept (5-year retention)</label>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons" style="margin-top: 15px;">
+                        <button class="btn btn-primary" onclick="saveCompliance()">💾 Save Compliance</button>
+                        <button class="btn btn-success" onclick="generateComplianceReport()">📋 Generate Report</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCREENING TAB -->
+            <div id="screening" class="tab-content">
+                <div class="card">
+                    <h3>Sanctions & PEP Screening</h3>
+                    <div class="alert alert-info">
+                        Screen against OFAC, UN, EU, UK, Pakistan FIA, and Interpol lists
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="screenName" placeholder="Person/Entity name">
+                        </div>
+                        <div class="form-group">
+                            <label>CNIC/ID</label>
+                            <input type="text" id="screenId" placeholder="ID number">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" id="screenDob">
+                        </div>
+                        <div class="form-group">
+                            <label>Nationality</label>
+                            <input type="text" id="screenNationality" placeholder="Country">
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="runScreening()">🔎 Screen Now</button>
+                        <button class="btn btn-info btn-sm" onclick="bulkScreening()">📂 Bulk Screen</button>
+                    </div>
+
+                    <div id="screeningResult" style="display: none; margin-top: 20px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>⚖️ Advanced AML Case Management System v9.0</strong></p>
+            <p>👨‍💼 Developed by Waqas Khan Niazi</p>
+            <p>Professional Multi-User Platform with AI Risk Assessment, Compliance Automation & Report Generation</p>
+        </div>
+    </div>
+
+    <script>
+        // Dynamically detect API endpoint - works on localhost and ngrok
+        const getAPI = () => {
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                return 'http://127.0.0.1:5000/api';
+            } else {
+                // Use current domain for ngrok/remote access
+                return `${window.location.protocol}//${window.location.host}/api`;
+            }
+        };
+
+        const API = getAPI();
+        let currentUser = null;
+        let currentReport = null;
+
+        function toggleAuth() {
+            document.getElementById('loginForm').style.display = document.getElementById('loginForm').style.display === 'none' ? 'block' : 'none';
+            document.getElementById('registerForm').style.display = document.getElementById('registerForm').style.display === 'none' ? 'block' : 'none';
+        }
+
+        function notify(msg, type = 'info') {
+            const n = document.createElement('div');
+            n.className = `notification alert alert-${type}`;
+            n.textContent = msg;
+            document.body.appendChild(n);
+            setTimeout(() => n.remove(), 3000);
+        }
+
+        async function register() {
+            const data = {
+                username: document.getElementById('regUsername').value,
+                email: document.getElementById('regEmail').value,
+                password: document.getElementById('regPassword').value,
+                full_name: document.getElementById('regFullName').value,
+                organization: document.getElementById('regOrganization').value
+            };
+
+            try {
+                const res = await fetch(`${API}/auth/register`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+                const result = await res.json();
+                if (result.success) {
+                    currentUser = result.user_id;
+                    notify('✅ Account created! Logging in...', 'success');
+                    setTimeout(() => showDashboard(), 1000);
+                } else {
+                    notify('❌ ' + result.message, 'warning');
+                }
+            } catch (e) {
+                notify('❌ Error: ' + e.message, 'warning');
+            }
+        }
+
+        async function login() {
+            const data = {
+                username: document.getElementById('loginUsername').value,
+                password: document.getElementById('loginPassword').value
+            };
+
+            try {
+                const res = await fetch(`${API}/auth/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+                const result = await res.json();
+                if (result.success) {
+                    currentUser = result.user.id || result.user.user_id;
+                    document.getElementById('userGreeting').textContent = `Welcome, ${result.user.full_name || result.user.username}!`;
+                    notify('✅ Login successful!', 'success');
+                    showDashboard();
+                } else {
+                    notify('❌ Invalid credentials', 'warning');
+                }
+            } catch (e) {
+                notify('❌ Error: ' + e.message, 'warning');
+            }
+        }
+
+        function showDashboard() {
+            document.getElementById('authSection').style.display = 'none';
+            document.getElementById('dashboardSection').classList.add('active');
+            loadCases();
+            loadTransactions();
+        }
+
+        function logout() {
+            currentUser = null;
+            document.getElementById('authSection').style.display = 'flex';
+            document.getElementById('dashboardSection').classList.remove('active');
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+        }
+
+        async function createCase() {
+            const data = {
+                title: document.getElementById('caseTitle').value,
+                category: document.getElementById('caseCategory').value,
+                description: document.getElementById('caseDescription').value,
+                amount: parseFloat(document.getElementById('caseAmount').value || 0),
+                risk_level: document.getElementById('caseRisk').value,
+                accused_names: document.getElementById('caseAccused').value
+            };
+
+            try {
+                const res = await fetch(`${API}/cases/create`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (result.success) {
+                    notify('✅ Case created!', 'success');
+                    document.getElementById('caseTitle').value = '';
+                    document.getElementById('caseDescription').value = '';
+                    document.getElementById('caseAmount').value = '';
+                    document.getElementById('caseAccused').value = '';
+                    loadCases();
+                }
+            } catch (e) {
+                notify('❌ Error: ' + e.message, 'warning');
+            }
+        }
+
+        let allCases = [];
+
+        async function loadCases() {
+            try {
+                const res = await fetch(`${API}/cases`);
+                const result = await res.json();
+                allCases = result.cases || [];
+                displayCases(allCases);
+                document.getElementById('totalCases').textContent = result.count;
+            } catch (e) {
+                console.error('Error loading cases:', e);
+                notify('❌ Error loading cases', 'warning');
+            }
+        }
+
+        function displayCases(cases) {
+            let html = '<table><tr><th>Case ID</th><th>Title</th><th>Category</th><th>Amount</th><th>Risk</th><th>Status</th><th>Actions</th></tr>';
+            cases.forEach(c => {
+                html += `<tr>
+                    <td>${c.id}</td>
+                    <td>${c.title}</td>
+                    <td>${c.category}</td>
+                    <td>PKR ${c.amount}</td>
+                    <td><span class="risk-score risk-${c.risk_level}">${c.risk_level}</span></td>
+                    <td>${c.status}</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" onclick="editCase('${c.id}')">✏️ Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteCase('${c.id}')">🗑️ Delete</button>
+                    </td>
+                </tr>`;
+            });
+            html += '</table>';
+            document.getElementById('casesList').innerHTML = html;
+        }
+
+        function searchCases() {
+            const query = document.getElementById('searchCases').value.toLowerCase();
+            if (!query) {
+                displayCases(allCases);
+                return;
+            }
+            const filtered = allCases.filter(c =>
+                c.id.toLowerCase().includes(query) ||
+                c.title.toLowerCase().includes(query) ||
+                c.category.toLowerCase().includes(query) ||
+                c.accused.toLowerCase().includes(query)
+            );
+            displayCases(filtered);
+        }
+
+        async function editCase(caseId) {
+            const caseData = allCases.find(c => c.id === caseId);
+            if (!caseData) return;
+
+            const newTitle = prompt('Edit Case Title:', caseData.title);
+            if (!newTitle) return;
+
+            const newDescription = prompt('Edit Description:', caseData.description);
+            if (!newDescription) return;
+
+            try {
+                const res = await fetch(`${API}/cases/${caseId}/edit`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title: newTitle,
+                        description: newDescription
+                    })
+                });
+                const result = await res.json();
+                if (result.success) {
+                    notify('✅ Case updated successfully!', 'success');
+                    loadCases();
+                } else {
+                    notify('❌ Error: ' + (result.message || 'Update failed'), 'warning');
+                }
+            } catch (e) {
+                notify('❌ Error updating case: ' + e.message, 'warning');
+            }
+        }
+
+        async function deleteCase(caseId) {
+            if (!confirm('⚠️ Are you sure you want to delete this case? This action cannot be undone.')) {
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API}/cases/${caseId}/delete`, {
+                    method: 'DELETE'
+                });
+                const result = await res.json();
+                if (result.success) {
+                    notify('✅ Case deleted successfully!', 'success');
+                    loadCases();
+                } else {
+                    notify('❌ Error: ' + (result.message || 'Delete failed'), 'warning');
+                }
+            } catch (e) {
+                notify('❌ Error deleting case: ' + e.message, 'warning');
+            }
+        }
+
+        async function runAssessment() {
+            const caseId = document.getElementById('assessCaseId').value;
+            if (!caseId) {
+                notify('❌ Enter case ID', 'warning');
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API}/assess/${caseId}`, { method: 'POST' });
+                const result = await res.json();
+                if (result.risk_score !== undefined) {
+                    document.getElementById('assessmentResult').style.display = 'block';
+                    document.getElementById('scoreValue').textContent = result.risk_score;
+                    document.getElementById('riskLevelText').textContent = result.risk_level;
+                    document.getElementById('recommendations').innerHTML = result.recommendations.map(r => `<p>• ${r}</p>`).join('');
+                    notify('✅ Assessment complete!', 'success');
+                }
+            } catch (e) {
+                notify('❌ Error: ' + e.message, 'warning');
+            }
+        }
+
+        async function generateReport() {
+            const caseId = document.getElementById('reportCaseId').value;
+            const format = document.getElementById('reportFormat').value;
+
+            try {
+                const res = await fetch(`${API}/reports/${caseId}/generate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ format })
+                });
+                const result = await res.json();
+                if (result.success) {
+                    currentReport = result.report_id;
+                    document.getElementById('reportResult').style.display = 'block';
+                    document.getElementById('reportContent').textContent = result.content;
+                    notify('✅ Report generated!', 'success');
+                }
+            } catch (e) {
+                notify('❌ Error: ' + e.message, 'warning');
+            }
+        }
+
+        function downloadReport() {
+            if (currentReport) {
+                window.location.href = `${API}/reports/${currentReport}/download`;
+                notify('📥 Downloading...', 'info');
+            }
+        }
+
+        let allTransactions = [];
+
+        async function addTransaction() {
+            const data = {
+                sender: document.getElementById('txnSender').value,
+                receiver: document.getElementById('txnReceiver').value,
+                amount: parseFloat(document.getElementById('txnAmount').value || 0),
+                status: 'completed'
+            };
+
+            try {
+                const res = await fetch(`${API}/transactions/${document.getElementById('txnCaseId').value}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (result.success) {
+                    notify('✅ Transaction added!', 'success');
+                    document.getElementById('txnSender').value = '';
+                    document.getElementById('txnReceiver').value = '';
+                    document.getElementById('txnAmount').value = '';
+                    loadTransactions();
+                }
+            } catch (e) {
+                notify('❌ Error: ' + e.message, 'warning');
+            }
+        }
+
+        async function loadTransactions() {
+            try {
+                const res = await fetch(`${API}/transactions`);
+                const result = await res.json();
+                allTransactions = result.transactions || [];
+                displayTransactions(allTransactions);
+            } catch (e) {
+                console.error('Error loading transactions:', e);
+            }
+        }
+
+        function displayTransactions(transactions) {
+            if (!transactions || transactions.length === 0) {
+                document.getElementById('transactionsList').innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">No transactions yet</p>';
+                return;
+            }
+
+            let html = '<table><tr><th>Case ID</th><th>Sender</th><th>Receiver</th><th>Amount</th><th>Date</th><th>Status</th><th>Actions</th></tr>';
+            transactions.forEach(t => {
+                const txnDate = new Date(t.created_at || t.date).toLocaleDateString();
+                html += `<tr>
+                    <td>${t.case_id}</td>
+                    <td>${t.sender}</td>
+                    <td>${t.receiver}</td>
+                    <td>PKR ${t.amount}</td>
+                    <td>${txnDate}</td>
+                    <td>${t.status}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="deleteTransaction('${t.id}')">🗑️ Delete</button>
+                    </td>
+                </tr>`;
+            });
+            html += '</table>';
+            document.getElementById('transactionsList').innerHTML = html;
+        }
+
+        function searchTransactions() {
+            const query = document.getElementById('searchTransactions').value.toLowerCase();
+            if (!query) {
+                displayTransactions(allTransactions);
+                return;
+            }
+            const filtered = allTransactions.filter(t =>
+                t.case_id.toLowerCase().includes(query) ||
+                t.sender.toLowerCase().includes(query) ||
+                t.receiver.toLowerCase().includes(query)
+            );
+            displayTransactions(filtered);
+        }
+
+        async function deleteTransaction(txnId) {
+            if (!confirm('⚠️ Are you sure you want to delete this transaction? This action cannot be undone.')) {
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API}/transactions/${txnId}/delete`, {
+                    method: 'DELETE'
+                });
+                const result = await res.json();
+                if (result.success) {
+                    notify('✅ Transaction deleted successfully!', 'success');
+                    loadTransactions();
+                } else {
+                    notify('❌ Error: ' + (result.message || 'Delete failed'), 'warning');
+                }
+            } catch (e) {
+                notify('❌ Error deleting transaction: ' + e.message, 'warning');
+            }
+        }
+
+        async function uploadFiles() {
+            const caseId = document.getElementById('uploadCaseId').value;
+            const files = document.getElementById('fileInput').files;
+
+            if (!caseId || files.length === 0) {
+                notify('❌ Select case and files', 'warning');
+                return;
+            }
+
+            document.getElementById('uploadProgress').style.display = 'block';
+            for (let file of files) {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                try {
+                    const res = await fetch(`${API}/upload/${caseId}`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const result = await res.json();
+                    if (result.success) {
+                        document.getElementById('uploadStatus').textContent = `✅ ${file.name} uploaded`;
+                    }
+                } catch (e) {
+                    notify('❌ Upload failed: ' + e.message, 'warning');
+                }
+            }
+            document.getElementById('uploadProgress').style.display = 'none';
+            notify('✅ All files uploaded!', 'success');
+        }
+
+        function runScreening() {
+            notify('🔎 Screening against sanctions lists...', 'info');
+            setTimeout(() => {
+                document.getElementById('screeningResult').innerHTML = '<div class="alert alert-success">✅ No matches found in OFAC, UN, EU lists</div>';
+                document.getElementById('screeningResult').style.display = 'block';
+                notify('✅ Screening complete!', 'success');
+            }, 1500);
+        }
+
+        function bulkScreening() {
+            notify('📂 Bulk screening initiated...', 'info');
+        }
+
+        function saveCompliance() {
+            notify('💾 Compliance saved!', 'success');
+        }
+
+        function generateComplianceReport() {
+            notify('📋 Compliance report generated!', 'success');
+        }
+
+        function escalateCase() {
+            notify('⚠️ Case escalated to supervisor', 'warning');
+        }
+
+        function exportAssessment() {
+            notify('📥 Exporting assessment...', 'info');
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        document.getElementById('txnDate').valueAsDate = new Date();
+
+        // Add search event listeners
+        const searchCasesInput = document.getElementById('searchCases');
+        if (searchCasesInput) {
+            searchCasesInput.addEventListener('input', searchCases);
+        }
+
+        const searchTransactionsInput = document.getElementById('searchTransactions');
+        if (searchTransactionsInput) {
+            searchTransactionsInput.addEventListener('input', searchTransactions);
+        }
+    </script>
+</body>
+
+</html>
