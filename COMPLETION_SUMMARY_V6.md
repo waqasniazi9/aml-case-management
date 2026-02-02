@@ -585,4 +585,5 @@ System learns from case outcomes and adjusts detection thresholds over time.
 
 ---
 
-*For FIA AMLC Lahore - Anti-Money Laundering Case Management System*
+*For AML AMLC Lahore - Anti-Money Laundering Case Management System*
+

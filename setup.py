@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Setup Script for FIA AML Case Management System
+Setup Script for AML AML Case Management System
 Installs dependencies and initializes the system
 """
 
@@ -25,12 +25,12 @@ def install_dependencies():
 def create_env_file():
     """Create .env configuration file"""
     print("⚙️  Creating configuration file (.env)...")
-    env_content = """# FIA AML Case Management System Configuration
+    env_content = """# AML AML Case Management System Configuration
 FLASK_ENV=production
 SECRET_KEY=aml-case-management-secure-key-2024
 DEBUG=False
 DATABASE_URL=sqlite:///aml_system.db
-GITHUB_REPO_OWNER=FIA-AMLC
+GITHUB_REPO_OWNER=AML-AMLC
 GITHUB_REPO_NAME=aml-case-data
 API_PORT=5000
 """
@@ -60,7 +60,7 @@ def check_python_version():
 def main():
     """Main setup function"""
     print("=" * 60)
-    print("FIA AML Case Management System v3.0")
+    print("AML AML Case Management System v3.0")
     print("Setup & Initialization Script")
     print("=" * 60)
     print()
@@ -94,3 +94,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

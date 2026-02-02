@@ -1,6 +1,6 @@
 ╔════════════════════════════════════════════════════════════════════╗
 ║                    🎉 UPGRADE COMPLETE! 🎉                          ║
-║         FIA AML Case Management System v3.0                         ║
+║         AML AML Case Management System v3.0                         ║
 ║              Professional Full-Stack Application                    ║
 ╚════════════════════════════════════════════════════════════════════╝
 
@@ -289,7 +289,7 @@ Database (SQLite)
 📞 DEVELOPER INFO
 
 Developed by:     Waqas Khan Niazi
-Organization:     FIA AMLC Lahore
+Organization:     AML AMLC Lahore
 Version:          3.0
 Release Date:     January 31, 2026
 Status:           ✅ PRODUCTION READY
@@ -314,11 +314,12 @@ Then open: aml3_system.html
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Thank you for using FIA AML Case Management System v3.0!
+Thank you for using AML AML Case Management System v3.0!
 
 For questions or issues, refer to the documentation files or 
-contact FIA AMLC Lahore.
+contact AML AMLC Lahore.
 
 Happy investigating! 🕵️
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+

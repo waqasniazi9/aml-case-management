@@ -1,4 +1,4 @@
-# FIA AML Case Management System - API Documentation
+# AML AML Case Management System - API Documentation
 
 ## Base URL
 
@@ -260,7 +260,7 @@ Authorization: Bearer <token>
   "description": "AML Case Data Repository",
   "stars": 15,
   "forks": 3,
-  "url": "https://github.com/FIA-AMLC/aml-case-data"
+  "url": "https://github.com/AML-AMLC/aml-case-data"
 }
 ```
 
@@ -417,4 +417,5 @@ For issues or questions:
 
 - Check logs: `aml_system.log`
 - Review README.md
-- Contact: FIA AMLC Lahore
+- Contact: AML AMLC Lahore
+

@@ -11,7 +11,7 @@ A professional, multi-user Anti-Money Laundering (AML) compliance platform with 
 - **Real-Time Transaction Monitoring** - Monitor suspicious transaction patterns
 - **AI Risk Assessment** - Automatic risk scoring using machine learning algorithms
 - **Compliance Reporting** - Generate comprehensive compliance reports
-- **Sanctions Screening** - Screen against OFAC, UN, EU, UK, Pakistan FIA, and Interpol lists
+- **Sanctions Screening** - Screen against OFAC, UN, EU, UK, Pakistan AML, and Interpol lists
 - **PEP Detection** - Politically Exposed Person verification
 - **File Management** - Upload and manage KYC, CDD, EDD documents and media
 
@@ -302,3 +302,4 @@ For issues and questions:
 **Version:** 9.0  
 **Last Updated:** February 2, 2026  
 **Status:** Production Ready ✅
+

@@ -1,4 +1,4 @@
-# FIA AML Case Management System v3.0
+# AML AML Case Management System v3.0
 
 ## Comprehensive Upgrade Summary
 
@@ -487,14 +487,14 @@ docker run -p 5000:5000 aml-system
 - Review API_DOCUMENTATION.md
 - Run test_api.py
 - Check aml_system.log
-- Contact: FIA AMLC Lahore
+- Contact: AML AMLC Lahore
 
 ---
 
 ## 👨‍💻 DEVELOPMENT
 
 **Developed by:** Waqas Khan Niazi  
-**Organization:** FIA AMLC Lahore  
+**Organization:** AML AMLC Lahore  
 **Version:** 3.0  
 **Last Updated:** January 31, 2026  
 
@@ -503,3 +503,4 @@ docker run -p 5000:5000 aml-system
 **Status:** ✅ Production Ready  
 **Quality:** Enterprise-Grade  
 **Support:** Active  
+

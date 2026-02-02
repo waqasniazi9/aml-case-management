@@ -1,4 +1,4 @@
-# FIA AML CASE MANAGEMENT SYSTEM v6.0 - ENHANCED EDITION
+# AML AML CASE MANAGEMENT SYSTEM v6.0 - ENHANCED EDITION
 
 ## Overview
 
@@ -568,4 +568,5 @@ For detailed algorithm documentation, see:
 **Version:** 6.0 Enhanced  
 **Last Updated:** February 2026  
 **Status:** Production Ready  
-**License:** FIA AMLC Lahore
+**License:** AML AMLC Lahore
+

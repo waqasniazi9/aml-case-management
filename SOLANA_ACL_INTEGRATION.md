@@ -2,7 +2,7 @@
 
 ## Overview
 
-The FIA AML Case Management System v3.5 now integrates **Solana Token ACL (Access Control List)** capabilities based on the sRFC 37 standard. This enables cryptocurrency compliance monitoring by linking Solana blockchain wallets and token accounts to AML investigations.
+The AML AML Case Management System v3.5 now integrates **Solana Token ACL (Access Control List)** capabilities based on the sRFC 37 standard. This enables cryptocurrency compliance monitoring by linking Solana blockchain wallets and token accounts to AML investigations.
 
 ## Architecture
 
@@ -516,3 +516,4 @@ For more information:
 - See [README.md](README.md) for system overview
 - See [API_DOCUMENTATION.md](API_DOCUMENTATION.md) for traditional AML endpoints
 - Check audit logs for transaction history
+

@@ -20,7 +20,7 @@ log = logging.getLogger(__name__)
 def main():
     try:
         log.info("=" * 70)
-        log.info("FIA AML Case Management System v3.5 - Starting")
+        log.info("AML AML Case Management System v3.5 - Starting")
         log.info("=" * 70)
 
         log.info("Step 1: Importing aml_system module...")
@@ -69,3 +69,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

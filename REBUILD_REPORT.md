@@ -1,4 +1,4 @@
-# FIA AML Case Management System v3.5 - Rebuild Complete ✅
+# AML AML Case Management System v3.5 - Rebuild Complete ✅
 
 ## System Status: **FULLY OPERATIONAL**
 
@@ -321,4 +321,5 @@ The system is production-ready with:
 
 *Rebuild completed on January 31, 2026*  
 *System Version: 3.5*  
-*Developer: Waqas Khan Niazi, FIA AMLC*
+*Developer: Waqas Khan Niazi, AML AMLC*
+

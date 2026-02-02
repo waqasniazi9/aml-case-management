@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 if __name__ == '__main__':
     logger.info("="*70)
-    logger.info("FIA AML Case Management System v5.0 - Professional Build")
+    logger.info("AML AML Case Management System v5.0 - Professional Build")
     logger.info("="*70)
 
     try:
@@ -49,3 +49,4 @@ if __name__ == '__main__':
     except Exception as e:
         logger.error(f"Error: {e}")
         raise
+

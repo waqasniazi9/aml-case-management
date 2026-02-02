@@ -3,7 +3,7 @@
 ENHANCED AML CASE MANAGEMENT SYSTEM v6.0 - ENTERPRISE EDITION
 Integrated with features from top AML systems: Jube, AMLSim, Databricks, AnChainAI, IBM, and Academic Research
 Real Anti-Money Laundering System with Advanced Detection, ML & Network Analysis
-For: FIA AMLC Lahore
+For: AML AMLC Lahore
 """
 
 import os
@@ -1212,7 +1212,7 @@ def create_app():
             pass
         # Fallback JSON response
         return jsonify({
-            'system': 'FIA AML System v6.0 Enhanced',
+            'system': 'AML AML System v6.0 Enhanced',
             'status': 'operational',
             'database': 'connected',
             'message': 'Open http://localhost:5000 in browser for dashboard',
@@ -1349,5 +1349,6 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
-    logger.info("Starting FIA AML System v6.0 Enhanced")
+    logger.info("Starting AML AML System v6.0 Enhanced")
     app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
+

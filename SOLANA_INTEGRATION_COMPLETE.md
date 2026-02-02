@@ -444,7 +444,7 @@ README_v3.5.md (overview)
 
 ## 🎊 Implementation Complete
 
-**The FIA AML Case Management System v3.5 is now equipped with full Solana Token ACL capabilities.**
+**The AML AML Case Management System v3.5 is now equipped with full Solana Token ACL capabilities.**
 
 ### What You Can Do Now
 
@@ -468,3 +468,4 @@ README_v3.5.md (overview)
 **Status: ✅ COMPLETE & READY FOR USE**
 
 For questions or support, refer to the comprehensive documentation files included in the project.
+

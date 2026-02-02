@@ -1,4 +1,4 @@
-# FIA AML Case Management System v3.0
+# AML AML Case Management System v3.0
 
 ## Complete Project Index & Guide
 
@@ -556,8 +556,8 @@ python aml_system.py
 ## 📞 CONTACT & SUPPORT
 
 **Developed by:** Waqas Khan Niazi  
-**Organization:** FIA AMLC Lahore  
-**Email:** [Contact FIA AMLC]  
+**Organization:** AML AMLC Lahore  
+**Email:** [Contact AML AMLC]  
 **Version:** 3.0  
 **Last Updated:** January 31, 2026  
 
@@ -605,3 +605,4 @@ python aml_system.py
 **Quality:** Enterprise-Grade  
 **Support:** Active  
 **Maintenance:** Ongoing  
+

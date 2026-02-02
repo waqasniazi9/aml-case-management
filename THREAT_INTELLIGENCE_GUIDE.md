@@ -2,7 +2,7 @@
 
 ## Overview
 
-The FIA AML Case Management System v3.5+ now includes **Cybersecurity Threat Intelligence** capabilities powered by weekly research summaries. This enables the system to track supply chain attacks, malware campaigns, APTs, and other threats while linking them to active AML investigations.
+The AML AML Case Management System v3.5+ now includes **Cybersecurity Threat Intelligence** capabilities powered by weekly research summaries. This enables the system to track supply chain attacks, malware campaigns, APTs, and other threats while linking them to active AML investigations.
 
 ## Features
 
@@ -487,3 +487,4 @@ For more information:
 - See [README_v3.5.md](README_v3.5.md) for system overview
 - See [SOLANA_ACL_INTEGRATION.md](SOLANA_ACL_INTEGRATION.md) for wallet features
 - Check code comments in `aml_system.py` for implementation details
+

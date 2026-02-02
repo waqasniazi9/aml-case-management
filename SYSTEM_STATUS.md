@@ -11,7 +11,7 @@
 ## Server Output Shows
 
 ```
-✅ FIA AML Case Management System v3.5 - Starting
+✅ AML AML Case Management System v3.5 - Starting
 ✅ Flask app created successfully
 ✅ Configuration:
    - Host: 0.0.0.0
@@ -71,3 +71,4 @@ The "Not found" error has been resolved. The server is now running correctly on 
 **Startup Command:** `python run.py`
 **Test Command:** `python verify_api.py`
 **Last Updated:** January 31, 2026 23:01:17
+

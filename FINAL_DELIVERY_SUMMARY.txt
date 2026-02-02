@@ -481,7 +481,7 @@ Performance: Optimized (50%+ improvement)
 Security: Enterprise-grade
 Compliance: Ready
 
-FOR FIA AMLC LAHORE - ANTI-MONEY LAUNDERING CASE MANAGEMENT SYSTEM
+FOR AML AMLC LAHORE - ANTI-MONEY LAUNDERING CASE MANAGEMENT SYSTEM
 
 ═══════════════════════════════════════════════════════════════════════════════
 
@@ -490,3 +490,4 @@ FOR FIA AMLC LAHORE - ANTI-MONEY LAUNDERING CASE MANAGEMENT SYSTEM
            START HERE: README_V6_DELIVERY.txt or FILE_INDEX.txt
 
 ═══════════════════════════════════════════════════════════════════════════════
+

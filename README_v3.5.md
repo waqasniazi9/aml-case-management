@@ -1,4 +1,4 @@
-# FIA AML Case Management System v3.5
+# AML AML Case Management System v3.5
 
 ## Professional Cryptocurrency Compliance & Solana Token ACL Integration
 
@@ -10,7 +10,7 @@
 
 ## 🎯 System Overview
 
-A comprehensive **Anti-Money Laundering (AML) Case Management System** developed for the FIA (Federal Investigation Agency) Lahore with advanced cryptocurrency compliance monitoring through Solana Token ACL integration.
+A comprehensive **Anti-Money Laundering (AML) Case Management System** developed for the AML (Federal Investigation Agency) Lahore with advanced cryptocurrency compliance monitoring through Solana Token ACL integration.
 
 ### Key Features
 
@@ -192,7 +192,7 @@ GET    /api/solana/dashboard                    - Get ACL statistics
 # Token structure
 {
     "user_id": "user-uuid",
-    "username": "investigator@fia.gov.pk",
+    "username": "investigator@AML.gov.pk",
     "role": "investigator",
     "iat": 1704067200,
     "exp": 1704153600
@@ -551,7 +551,7 @@ pip install --upgrade -r requirements.txt
 
 ## 📄 License & Legal
 
-**Developed For:** Federal Investigation Agency (FIA) Lahore  
+**Developed For:** Federal Investigation Agency (AML) Lahore  
 **Jurisdiction:** Pakistan  
 **Compliance:** AML/CFT Standards, Pakistani Financial Regulations
 
@@ -581,3 +581,4 @@ To contribute improvements:
 ---
 
 **For detailed technical information, see [SOLANA_ACL_INTEGRATION.md](SOLANA_ACL_INTEGRATION.md)**
+

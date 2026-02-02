@@ -31,7 +31,7 @@ Expected output:
 ```
 Database initialized successfully with Solana/Token ACL and Cybersecurity Threat tables
 Flask application initialized successfully
-Starting FIA AML Case Management System v3.5
+Starting AML AML Case Management System v3.5
 Running on http://127.0.0.1:5000
 ```
 
@@ -302,3 +302,4 @@ curl -Method Post `
 
 *Terminal Configuration Guide - AML System v3.5*  
 *Last Updated: January 31, 2026*
+
