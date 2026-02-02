@@ -390,22 +390,20 @@ app.run(port=5001)
 
 ## ⚖️ Legal & Compliance
 
-This system is developed for AML (AML System) AML System Lahore for Anti-Money Laundering investigations in compliance with:
+This system is developed for AML (AML System) for Anti-Money Laundering investigations in compliance with:
 
-- AMLA 2010 (Pakistan)
+- World Law Standards
 - AML/CFT International Standards
-- AML Guidelines
+- Global AML Guidelines
 
 ---
 
 ## 📜 License
 
-For official use by AML System Lahore only.
+Open for global use by organizations worldwide for Anti-Money Laundering compliance and investigations.
 
 ---
 
 **Last Updated:** January 31, 2026  
 **System Version:** 3.0  
 **Database Version:** 1.0
-
-

@@ -380,7 +380,7 @@ Database (SQLite)
 
 ### Compliance Requirements
 
-- ✅ AMLA 2010 (Pakistan) compatible
+- ✅ World Law Standards compatible
 - ✅ AML/CFT standards support
 - ✅ Audit trail capability
 - ✅ Data integrity assurance
@@ -539,5 +539,3 @@ The system is:
 **System Version:** 3.0  
 **Status:** ✅ APPROVED FOR PRODUCTION  
 **Prepared by:** AML System Lahore Development Team  
-
-
